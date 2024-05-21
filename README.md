@@ -25,32 +25,29 @@ Neste exercício, você aprenderá a puxar uma imagem do Docker Hub e criar dois
    Verifique se a imagem foi baixada com sucesso, listando as imagens disponíveis na sua máquina.
 
    ```bash
-   docker images
+   docker images ls
    ```
-
-   Você deve ver a imagem do Nginx na lista.
+   Você deve ver a imagem do Nginx na lista. Confirme se a imagem é aquela que foi feita o pull.
 
 3. **Criando o Primeiro Contêiner**
 
-   Agora, vamos criar o primeiro contêiner a partir da imagem do Nginx. Este contêiner será executado em segundo plano (modo detached) e estará mapeado para a porta 8080 do seu host.
+   Agora, vamos criar o primeiro contêiner a partir da imagem do nginx. Este contêiner será executado em segundo plano (modo detached).
 
    ```bash
-   docker run -d -p 8080:80 --name meu_nginx1 nginx
+   docker run -d --name meu_nginx1 nginx
    ```
 
    - `-d`: Executa o contêiner em modo detached.
-   - `-p 8080:80`: Mapeia a porta 8080 do host para a porta 80 do contêiner.
    - `--name meu_nginx1`: Nomeia o contêiner como `meu_nginx1`.
 
 4. **Criando o Segundo Contêiner**
 
-   Agora, crie um segundo contêiner a partir da mesma imagem do Nginx. Este contêiner será executado em modo interativo (foreground) e estará mapeado para a porta 8081 do seu host.
+   Agora, crie um segundo contêiner a partir da mesma imagem do nginx. Este contêiner também será executado em segundo plano (modo detached).
 
    ```bash
-   docker run -p 8081:80 --name meu_nginx2 nginx
+   docker run -d --name meu_nginx2 nginx
    ```
 
-   - `-p 8081:80`: Mapeia a porta 8081 do host para a porta 80 do contêiner.
    - `--name meu_nginx2`: Nomeia o contêiner como `meu_nginx2`.
 
 5. **Verificando os Contêineres em Execução**
@@ -65,12 +62,7 @@ Neste exercício, você aprenderá a puxar uma imagem do Docker Hub e criar dois
 
 6. **Acessando os Serviços Nginx**
 
-   Para verificar se os contêineres estão funcionando corretamente, abra um navegador da web e acesse as seguintes URLs:
-
-   - Para o primeiro contêiner: `http://localhost:8080`
-   - Para o segundo contêiner: `http://localhost:8081`
-
-   Você deve ver a página padrão do Nginx em ambos os endereços.
+   Por padrão todos os contêineres são isolados. E assim não estamos conseguindo acesso ao conteúdo/serviços oferecidos por cada container. Neste caso, consulte uma alternativa na [documentação oficial](https://docs.docker.com/guides/get-started/) do docker para resolver este problema.
 
 #### Conclusão
 
